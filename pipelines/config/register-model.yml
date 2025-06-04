@@ -1,0 +1,16 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: register_model
+display_name: Register Model
+version: 1
+type: command
+inputs:
+    model:
+      type: mlflow_model
+    test_report:
+      type: uri_folder
+code: ../scripts 
+environment: azureml://registries/azureml/environments/lightgbm-3.3/versions/2
+command: >-
+  python register_model.py
+  --model ${{inputs.model}}
+  --test_report ${{inputs.test_report}}
